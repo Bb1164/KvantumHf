@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloch-gömb Szimulátor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bloch-gömb Szimulátor</h1>
+        </div>
+        <div class="content">
+            <div class="visualization-panel">
+                <div id="blochSphere"></div>
+            </div>
+            <div class="control-panel">
+                <div class="section">
+                    <h2>Kezdőállapot</h2>
+                    <div class="state-input">
+                        <div class="angle-inputs">
+                            <div class="angle-input">
+                                <label>θ szög (0-180°):</label>
+                                <input type="number" id="theta" value="0" min="0" max="180" step="0.1">
+                            </div>
+                            <div class="angle-input">
+                                <label>φ szög (0-360°):</label>
+                                <input type="number" id="phi" value="0" min="0" max="360" step="0.1">
+                            </div>
+                        </div>
+                        <button onclick="setInitialState()">Állapot beállítása</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Alapkapuk</h2>
+                    <div class="gate-buttons">
+                        <button class="gate-btn" onclick="addGate('X')">X</button>
+                        <button class="gate-btn" onclick="addGate('Y')">Y</button>
+                        <button class="gate-btn" onclick="addGate('Z')">Z</button>
+                        <button class="gate-btn" onclick="addGate('H')">H</button>
+                        <button class="gate-btn" onclick="addGate('S')">S</button>
+                        <button class="gate-btn" onclick="addGate('T')">T</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Forgatási kapuk</h2>
+                    <div class="rotation-controls">
+                        <div class="rotation-control">
+                            <label>Rx(θ):</label>
+                            <input type="number" id="rxAngle" value="0" min="0" max="360" step="0.1">
+                            <button onclick="addRotationGate('Rx', 'rxAngle')">Hozzáad</button>
+                        </div>
+                        <div class="rotation-control">
+                            <label>Ry(θ):</label>
+                            <input type="number" id="ryAngle" value="0" min="0" max="360" step="0.1">
+                            <button onclick="addRotationGate('Ry', 'ryAngle')">Hozzáad</button>
+                        </div>
+                        <div class="rotation-control">
+                            <label>Rz(θ):</label>
+                            <input type="number" id="rzAngle" value="0" min="0" max="360" step="0.1">
+                            <button onclick="addRotationGate('Rz', 'rzAngle')">Hozzáad</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Kapu sorozat</h2>
+                    <div class="gate-sequence" id="gateSequence"></div>
+                    <div class="actions">
+                        <button class="action-btn apply-btn" onclick="applyGates()">Kapuk alkalmazása</button>
+                        <button class="action-btn clear-btn" onclick="clearGates()">Törlés</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Állapotok</h2>
+                    <div class="states-list" id="statesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
