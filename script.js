@@ -27,7 +27,6 @@ function init() {
 
     createBlochSphere();
 
-    //addState(0, 0, '|0⟩', 0xff0000);
 
     // Egér vezérlés
     let isDragging = false;
@@ -47,7 +46,7 @@ function init() {
             const spherical = new THREE.Spherical();
             spherical.setFromVector3(camera.position);
             spherical.theta -= deltaX * 0.01;
-            spherical.phi -= deltaY * 0.01;  // Inverted vertical movement
+            spherical.phi -= deltaY * 0.01;
             spherical.phi = Math.max(0.1, Math.min(Math.PI - 0.1, spherical.phi));
             
             camera.position.setFromSpherical(spherical);
@@ -63,7 +62,7 @@ function init() {
 
     // Egér csúsztatása
     renderer.domElement.addEventListener('wheel', (e) => {
-        e.preventDefault(); // Prevent page scrolling
+        e.preventDefault();
         const scale = e.deltaY > 0 ? 1.1 : 0.9;
         camera.position.multiplyScalar(scale);
     }, { passive: false });
@@ -184,7 +183,6 @@ function updateStatesList() {
     states.forEach(state => {
         const item = document.createElement('div');
         item.className = 'state-item';
-        // Convert radians to degrees for display
         const thetaDeg = state.theta * 180 / Math.PI;
         const phiDeg = state.phi * 180 / Math.PI;
         item.innerHTML = `
